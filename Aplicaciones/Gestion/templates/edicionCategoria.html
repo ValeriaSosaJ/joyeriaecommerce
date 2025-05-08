@@ -1,0 +1,32 @@
+{% extends "./base.html"%}
+
+{% block title %}Editar Categoria{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edición de Categoría</h2>
+        <div class="card">
+            <div class="card-body"> 
+                <form action="/editarCategoria/" method="POST">{% csrf_token %}
+
+                    <div class="form-group">
+                        <input type="text" id="txtcodigo" name="codigo" value="{{categorias.codigo}}" class="form-control" placeholder="Código" 
+                        minlength="1" maxlength="6" readonly required> 
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtnombre" name="nombre" value="{{categorias.nombre}}" class="form-control" placeholder="Nombre" 
+                        minlength="2" maxlength="50" required> 
+                    </div>
+
+                    <div class="form-group">
+                       <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>  
+    </div>
+</div>
+{% endblock %}
+

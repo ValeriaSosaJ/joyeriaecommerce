@@ -1,0 +1,28 @@
+{% extends "./base.html" %}
+
+{% block title %}Agregar Categoría{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Agregar Categoría</h2>
+        <div class="card">
+            <div class="card-body"> 
+                <form action="/registrarCategoria/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="codigo" class="form-control" placeholder="Código" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" required> 
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>  
+    </div>
+</div>
+{% endblock %}

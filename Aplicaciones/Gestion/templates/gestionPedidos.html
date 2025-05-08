@@ -1,0 +1,65 @@
+{% extends "./base.html" %}
+
+{% block title %}Gestión de Pedidos{% endblock %}
+
+{% block body %}
+<div class="row">
+     <!-- Opciones -->
+     <div class="col-md-4">
+        <h4>Opciones</h4>
+        <div class="list-group">
+            <a href="/productos" class="list-group-item list-group-item-action">Productos</a>
+            <a href="/categorias" class="list-group-item list-group-item-action">Categorías</a>
+            <a href="/clientes" class="list-group-item list-group-item-action ">Clientes</a>
+            <a href="/pedidos" class="list-group-item list-group-item-action active">Pedidos</a>
+        </div>
+    </div>
+
+    <!--lista-->
+    <div class="col-md-8">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ message }}</strong>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Listado de Pedidos</h2>
+            <a href="{% url 'agregar_pedido' %}" class="btn btn-custom">Agregar Pedido</a>
+        </div>
+
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pe in pedidos %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ pe.codigo }}</td>
+                        <td>{{ pe.cliente.nombre }} </td>
+                        <td>{{ pe.fecha|date:"Y-m-d" }}</td>
+                        <td>{{ pe.estado }}</td>
+                        <td><a href="{% url 'editar_pedido' pe.codigo %}" class="btn btn-secondary">Editar</a></td>
+                        <td>  <a href="{% url 'eliminar_pedido' pe.codigo %}" class="btn btn-danger btnEliminacion"
+                            ">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

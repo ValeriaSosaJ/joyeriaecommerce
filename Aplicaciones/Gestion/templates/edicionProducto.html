@@ -1,0 +1,48 @@
+{% extends "./base.html"%}
+
+{% block title %}Agregar Producto{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edición de Producto</h2>
+        <div class="card">
+            <div class="card-body"> 
+                <form action="/editarProducto/" method="POST">{% csrf_token %}
+
+                    <div class="form-group">
+                        <input type="text" id="txtcodigo" name="codigo" value="{{productos.codigo}}" class="form-control" placeholder="Código" 
+                        minlength="1" maxlength="6" readonly required> 
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="txtnombre" name="nombre" value="{{productos.nombre}}"  class="form-control" placeholder="Nombre" 
+                        minlength="2" maxlength="50" required> 
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="txtcategoria" name="categoria" value="{{productos.categoria}}"  class="form-control" placeholder="Categoria" 
+                        minlength="3" maxlength="50" required> 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input type="number" step="0.01" name="precio" value="{{ productos.precio }}" class="form-control" required>
+                      </div>
+
+                    <div class="form-group">
+                       <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Imagen del producto (opcional):</label>
+                        <input type="file" name="imagen" class="form-control-file" accept="image/*">
+                    </div>
+                    
+                </form>
+            </div>
+        </div>  
+    </div>
+</div>
+{% endblock %}

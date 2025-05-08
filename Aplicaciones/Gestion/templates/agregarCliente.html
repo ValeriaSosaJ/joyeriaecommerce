@@ -1,0 +1,46 @@
+{% extends "./base.html" %}
+
+{% block title %}Agregar Cliente{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Agregar Cliente</h2>
+        <div class="card">
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.codigo.label_tag }}
+                        {{ form.codigo }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.nombre.label_tag }}
+                        {{ form.nombre }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.apellidopaterno.label_tag }}
+                        {{ form.apellidopaterno }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.apellidomaterno.label_tag }}
+                        {{ form.apellidomaterno }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.correo.label_tag }}
+                        {{ form.correo }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.telefono.label_tag }}
+                        {{ form.telefono }}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

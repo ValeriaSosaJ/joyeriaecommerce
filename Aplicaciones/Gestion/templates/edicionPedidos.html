@@ -1,0 +1,52 @@
+{% extends "./base.html" %}
+
+{% block title %}Edición de Pedido{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h2>Edición de Pedido</h2>
+    <div class="card">
+      <div class="card-body">
+        <form method="POST">
+          {% csrf_token %}
+
+          <div class="form-group mb-3">
+            <label>Código</label>
+            <input type="text" name="codigo" value="{{ pedido.codigo }}" class="form-control" readonly>
+          </div>
+
+          <div class="form-group mb-3">
+            <label>Cliente</label>
+            <select name="cliente" class="form-control" disabled>
+              <option value="{{ pedido.cliente.codigo }}">{{ pedido.cliente.nombre }} {{ pedido.cliente.apellidopaterno }}</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-3">
+            <label>Fecha del pedido</label>
+            <input type="date" name="fecha_pedido" class="form-control" required value="{{ pedido.fecha|date:'Y-m-d' }}">
+          </div>
+
+          <div class="form-group mb-3">
+            <label>Estado</label>
+            <select name="estado" class="form-control" required>
+              {% for estado_val, estado_disp in estados %}
+                <option value="{{ estado_val }}" {% if pedido.estado == estado_val %}selected{% endif %}>
+                  {{ estado_disp }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+            <a href="{% url 'gestion_pedidos' %}" class="btn btn-secondary btn-block mt-2">Cancelar</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

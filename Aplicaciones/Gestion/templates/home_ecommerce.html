@@ -1,0 +1,59 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}Inicio - Aura Joyería{% endblock %}
+
+{% block body %}
+<div class=" mb-0" style="margin: 0; padding: 0;">
+    <img src="{% static 'img/banner_inicio.jpg' %}" alt="Bienvenida" class="img-fluid w-100" style="border-radius: 0; display:block">
+  </div>
+
+  <div class="container mt-4">
+
+    <!-- Categorías -->
+    <h3 class="text-center mb-4">Explora por categoría</h3>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 text-center">
+  
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static 'img/anillos_inicio.jpg' %}" class="card-img-top" alt="Anillos">
+          <div class="card-body">
+            <h5 class="card-title">Anillos</h5>
+            <a href="{% url 'productos_por_categoria' 'DEF003'%}" class="btn btn-custom">Ver más</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static 'img/aretes_inicio.jpg' %}" class="card-img-top" alt="Aretes">
+          <div class="card-body">
+            <h5 class="card-title">Aretes</h5>
+            <a href="{% url 'productos_por_categoria' 'DEF004'%}" class="btn btn-custom">Ver más</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static 'img/collares_inicio.jpg' %}" class="card-img-top" alt="Collares">
+          <div class="card-body">
+            <h5 class="card-title">Collares</h5>
+            <a href="{% url 'productos_por_categoria' 'DEF001'%}" class="btn btn-custom">Ver más</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static 'img/pulseras_inicio.jpg' %}" class="card-img-top" alt="Pulseras">
+          <div class="card-body">
+            <h5 class="card-title">Pulseras</h5>
+            <a href="{% url 'productos_por_categoria' 'DEF002'%}" class="btn btn-custom">Ver más</a>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+    
+  </div>
+{% endblock %}

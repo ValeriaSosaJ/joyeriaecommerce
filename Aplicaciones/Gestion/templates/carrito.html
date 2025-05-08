@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Carrito{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Tu carrito de compras</h2>
+
+  {% if productos %}
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Producto</th>
+            <th>Imagen</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in productos %}
+            <tr>
+              <td>{{ item.producto.nombre }}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  {% if item.producto.imagen %}
+                    <img src="{{ item.producto.imagen.url }}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px;">
+                  {% endif %}
+                </div>
+              </td>
+              <td>{{ item.cantidad }}</td>
+              <td>${{ item.producto.precio }}</td>
+              <td>${{ item.subtotal }}</td>
+              <td><form method="post" action="{% url 'eliminar_del_carrito' item.producto.codigo %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+              </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="text-end">Total: ${{ total }}</h4>
+
+    <div class="text-center mt-4">
+      <form method="post" action="{% url 'pagar_carrito' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success px-5">Pagar</button>
+      </form>
+    </div>
+
+  {% else %}
+    <p class="text-center">Tu carrito está vacío.</p>
+  {% endif %}
+</div>
+{% endblock %}
